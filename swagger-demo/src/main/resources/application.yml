@@ -1,0 +1,8 @@
+spring:
+  servlet:
+    multipart:
+      max-file-size: 10MB # 文件大小限制
+      max-request-size: 100MB # 请求大小限制
+
+server:
+  port: 8087

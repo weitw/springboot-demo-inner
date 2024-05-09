@@ -1,0 +1,111 @@
+spring:
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+
+    url: jdbc:mysql://127.0.0.1:3306/erjibsdzsdspt_zizhu?characterEncoding=UTF-8&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8
+    username: root
+    password: 123456
+
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      minimum-idle: 10
+      maximum-pool-size: 50
+      connection-test-query: SELECT 1
+      pool-name: DatebookHikariCP
+  jooq:
+    sql-dialect: MYSQL
+  cache:
+    type: REDIS
+  redis:
+#    host: 192.168.60.156
+#    port: 6379
+#    password: F4_po6fkmnuRxD
+    host: 127.0.0.1
+    port: 6379
+    password:
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  devtools:
+    restart:
+      enabled: true
+#  thymeleaf:
+#    cache: false
+#    prefix: /templates
+#    suffix: .html
+  #debug: true
+  #  邮箱发送配置
+  mail:
+    #    host不配置会注入失败
+    host: smtp.exmail.qq.com
+    username: weitingwan@xinshiyun.com
+    password: l8ZvvVdacAfF430lERW4pQ==
+    default-encoding: utf-8
+    protocol: smtp
+    properties:
+      mail:
+        smtp:
+          connectiontimeout: 5000
+          timeout: 3000
+          writetimeout: 5000
+  application:
+    name: deliver-stub-web
+  security:
+    user:
+      name: ${spring.application.name}
+      password: xjg@14679
+server:
+  port: 8087
+  servlet:
+    context-path: /
+    session:
+      timeout: 2592000
+  tomcat:
+    basedir: /data/stub/basedir
+
+management:
+#  health:
+#    defaults:
+#      enabled: false
+  server:
+    port: 13215
+  endpoints:
+    enabled-by-default: true
+    web:
+      exposure:
+        include: "*"
+        base-path: /drapEndUrlDomainPro
+  endpoint:
+    prometheus:
+      enabled: true
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+        step: 1ms
+        descriptions: true
+    tags:
+      application: ${spring.application.name}
+multipart:
+  max-file-size: 50Mb
+
+swagger.enable: true
+expiring:
+  deliver:  # 7 DAYS
+    timeUnit: HOURS
+    timeout: 2
+
+file:
+  url: http://192.168.60.156:46009
+  # dir: /home/opt/service/stub/unified-deliver-platform
+  dir: /home/nfs/stub
+  bucketName: sdlmspt
+  default: sdlmspt
+  #本地测试使用的_文件服务_wl
+
+#省份编码
+provinceCode: 320000
