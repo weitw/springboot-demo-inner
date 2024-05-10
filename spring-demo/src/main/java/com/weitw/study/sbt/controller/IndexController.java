@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/filter-demo")
-public class FilterDemoController {
+@RequestMapping("/index")
+public class IndexController {
 
     @GetMapping("/test1")
     public String test1(String value) {
