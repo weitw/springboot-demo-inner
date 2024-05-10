@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace Dao/Mapper接口的全路径类名-->
+<mapper namespace="com.weitw.study.sbt.dao.UmsMenuDao">
+    <!--查询用户-->
+    <!--    select 表明这是查询语句属性
+            id 这条SQL的标识，一般和方法名一致;
+            parameterType 参数类型
+            resultType 结果类型 -->
+    <select id="findById" parameterType="Integer" resultType="com.weitw.study.sbt.domain.UmsMenu">
+        select * from ums_menu where id = #{id}
+    </select>
+</mapper>
