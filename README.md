@@ -2,6 +2,22 @@
 
 使用springboot中的一些demo
 
+# elasticsearch-demo
+
+测试springboot接入es
+
+# jooq-demo
+
+测试springboot接入jooq
+
+# mbatis-plus-demo
+
+测试springboot接入mybatis-plus
+
+# mybatis-demo
+
+测试springboot接入mybatis
+
 # spring-demo
 
 ## 1、过滤器
@@ -156,3 +172,19 @@ public class LoggingInterceptor implements HandlerInterceptor {
 请求过来时，顺序如下：
 
 请求：过滤器1->过滤器2->拦截器1->拦截器2->控制器（业务代码）->拦截器2->拦截器1->过滤器2->过滤器1->客户端
+
+
+
+# proj-admin
+
+用于一些项目实战应用
+
+
+
+# swagger-demo
+
+测试springboot接入swagger
+
+# utils-demo
+
+工具类

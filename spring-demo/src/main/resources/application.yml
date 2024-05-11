@@ -7,7 +7,11 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
     username: root
-    password: 123456
+    password: ENC(lL/MjJlfGZmaO2U4U1CMBQ==)
+  banner:
+    location: banner-custom.txt
+  profiles:
+    active: test
 
 server:
   port: 8087
@@ -15,3 +19,12 @@ server:
     context-path: /
     session:
       timeout: 2592000
+
+rpa:
+  open: true
+
+# 如果密文加盐，需要配置盐值
+#jasypt:
+#  encryptor:
+#    password: xsy1029*#
+
