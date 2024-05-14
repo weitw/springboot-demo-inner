@@ -7,11 +7,13 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
     username: root
-    password: ENC(lL/MjJlfGZmaO2U4U1CMBQ==)
+    password: ENC(UBHpSHxjL2F8ZiNTJUciZw==)
   banner:
     location: banner-custom.txt
   profiles:
     active: test
+  application:
+    name: springDemo
 
 server:
   port: 8087
@@ -28,3 +30,41 @@ rpa:
 #  encryptor:
 #    password: xsy1029*#
 
+# 随机值
+my-random:
+  secret: "${random.value}"
+  number: "${random.int}"
+  big-number: "${random.long}"
+  uuid: "${random.uuid}"
+  number-less-than-ten: "${random.int(10)}"
+  number-in-range: "${random.int[1024,65536]}"
+  # 集合的表示方法1
+  list1:
+    - 10
+    - 20
+    - 30
+  # 集合的表示方法2
+  list2: [10,20,30]
+  # map的表示方式1
+  mapinfo:
+    name: 张三
+    age: 李四
+    address:
+      province: 江苏省
+      city: 南京市
+  # 对象
+  address:
+    province: 江苏省
+    city: 南京市
+  userList:
+    - user:
+      name: 张三
+      age: 10
+    - user:
+      name: 李四
+      age: 20
+
+
+# 日志
+logging:
+  include-application-name: true

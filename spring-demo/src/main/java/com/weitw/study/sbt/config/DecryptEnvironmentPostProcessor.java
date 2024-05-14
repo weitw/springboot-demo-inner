@@ -1,16 +1,11 @@
 package com.weitw.study.sbt.config;
 
+import com.weitw.study.sbt.utils.AESUtil;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.env.EnvironmentPostProcessor;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.env.ConfigurableEnvironment;
-import org.springframework.core.env.MapPropertySource;
-import org.springframework.core.env.MutablePropertySources;
-import org.springframework.core.env.PropertySource;
-import org.springframework.stereotype.Component;
-
-import java.util.HashMap;
-import java.util.Map;
+import org.springframework.core.env.*;
+import java.util.Properties;
 
 
 /**
@@ -18,34 +13,35 @@ import java.util.Map;
  * @author weitw
  * @date 2024/5/11 16:46
  */
-@Configuration
 public class DecryptEnvironmentPostProcessor implements EnvironmentPostProcessor {
-
-    private static final String ENCRYPTION_KEY = "xsy1029*#"; // 在实际应用中，这个密钥应该从更安全的地方获取
-
     @Override
     public void postProcessEnvironment(ConfigurableEnvironment environment, SpringApplication application) {
+        Properties props = new Properties();  // 临时存储需要替换的配置
+        // 假设加密密码前缀为 "ENC("，后缀为 ")"
         MutablePropertySources propertySources = environment.getPropertySources();
         for (PropertySource<?> propertySource : propertySources) {
-            if (propertySource instanceof MapPropertySource) {
-                Map<String, Object> originalMap = ((MapPropertySource) propertySource).getSource();
-                Map<String, Object> decryptedMap = new HashMap<>();
-                for (Map.Entry<String, Object> entry : originalMap.entrySet()) {
-                    if ("spring.datasource.password".equals(entry.getKey())) {
-                        decryptedMap.put(entry.getKey(), decrypt(String.valueOf(entry.getValue())));
-                    } else {
-                        decryptedMap.put(entry.getKey(), entry.getValue());
+            if (propertySource instanceof EnumerablePropertySource) {
+                EnumerablePropertySource<?> enumerablePropertySource = (EnumerablePropertySource<?>) propertySource;
+                String[] propertyNames = enumerablePropertySource.getPropertyNames();
+                // 遍历所有配置key:value
+                for (String propertyName : propertyNames) {
+                    String propertyVal = environment.getProperty(propertyName);
+                    // 根据自己写的规则来解析那些配置是需要解密的
+                    if (propertyVal != null && propertyVal.startsWith("ENC(") && propertyVal.endsWith(")")) {
+                        // 解析得到加密的数据
+                        String encryptedValue = propertyVal.substring(4, propertyVal.length() - 1);
+                        // 调用自定义工具类解密
+                        String decryptedValue = AESUtil.decryptEcbMode(encryptedValue);
+                        // 保存需要替换的配置
+                        props.put(propertyName, decryptedValue);
                     }
                 }
-                // 替换原有的属性源
-//                propertySources.replace(propertySource.getName(), new MapPropertySource(propertySource.getName(), decryptedMap));
             }
         }
-    }
-
-    private Object decrypt(String encryptedValue) {
-        // 在这里实现你的解密逻辑，以下是一个示例占位符
-        // 实际上你应该使用适当的解密方法来解密该值
-        return "DECRYPTED_" + encryptedValue;
+        // 添加解密后的属性到环境中
+        if (!props.isEmpty()) {
+            PropertiesPropertySource pps = new PropertiesPropertySource("decryptedProperties", props);
+            environment.getPropertySources().addFirst(pps);
+        }
     }
 }
