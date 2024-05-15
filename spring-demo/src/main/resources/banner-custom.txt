@@ -1,0 +1,9 @@
+项目开始启动，测试自定义banner
+下面打印一下参数信息
+application.version=${application.version}
+application.formatted-version=${application.formatted-version}
+spring-boot.version=${spring-boot.version}
+spring-boot.formatted-version=${spring-boot.formatted-version}
+Ansi.NAME=${Ansi.NAME}
+application.title=${application.title}
+自定义banner.txt结束

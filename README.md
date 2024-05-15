@@ -2,6 +2,22 @@
 
 使用springboot中的一些demo
 
+# elasticsearch-demo
+
+测试springboot接入es
+
+# jooq-demo
+
+测试springboot接入jooq
+
+# mbatis-plus-demo
+
+测试springboot接入mybatis-plus
+
+# mybatis-demo
+
+测试springboot接入mybatis
+
 # spring-demo
 
 ## 1、过滤器
@@ -89,18 +105,18 @@
 ```java
 @Component  
 public class LoggingInterceptor implements HandlerInterceptor {  
-  
+
     @Override  
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {  
         System.out.println("Request URI: " + request.getRequestURI());  
         return true;  
     }  
-  
+
     @Override  
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) {  
         System.out.println("Request processed");  
     }  
-  
+
     @Override  
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {  
         System.out.println("Request completed");  
@@ -156,3 +172,19 @@ public class LoggingInterceptor implements HandlerInterceptor {
 请求过来时，顺序如下：
 
 请求：过滤器1->过滤器2->拦截器1->拦截器2->控制器（业务代码）->拦截器2->拦截器1->过滤器2->过滤器1->客户端
+
+## 4. 配置文件加密
+
+[Springboot-配置文件中敏感信息的加密：三种加密保护方法比较-CSDN博客](https://blog.csdn.net/wtwcsdn123/article/details/138801475)
+
+# proj-admin
+
+用于一些项目实战应用
+
+# swagger-demo
+
+测试springboot接入swagger
+
+# utils-demo
+
+工具类
