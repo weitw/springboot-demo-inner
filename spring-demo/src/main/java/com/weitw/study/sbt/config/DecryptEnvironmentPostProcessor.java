@@ -27,9 +27,9 @@ public class DecryptEnvironmentPostProcessor implements EnvironmentPostProcessor
                 for (String propertyName : propertyNames) {
                     String propertyVal = environment.getProperty(propertyName);
                     // 根据自己写的规则来解析那些配置是需要解密的
-                    if (propertyVal != null && propertyVal.startsWith("ENC(") && propertyVal.endsWith(")")) {
+                    if (propertyVal != null && propertyVal.startsWith("ENCRYPT(") && propertyVal.endsWith(")")) {
                         // 解析得到加密的数据
-                        String encryptedValue = propertyVal.substring(4, propertyVal.length() - 1);
+                        String encryptedValue = propertyVal.substring(8, propertyVal.length() - 1);
                         // 调用自定义工具类解密
                         String decryptedValue = AESUtil.decryptEcbMode(encryptedValue);
                         // 保存需要替换的配置

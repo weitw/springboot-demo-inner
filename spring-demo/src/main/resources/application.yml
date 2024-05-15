@@ -5,9 +5,17 @@ spring:
       max-request-size: 100MB # 请求大小限制
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://localhost:3306/inner-test?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
     username: root
-    password: ENC(UBHpSHxjL2F8ZiNTJUciZw==)
+#    password: ENCRYPT(UBHpSHxjL2F8ZiNTJUciZw==)
+    password: 123456
+  # 自定义数据源
+#  datasourceCustom:
+#    driver-class-name: com.mysql.jdbc.Driver
+#    url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+#    username: root
+#    password: 123456
+#    pool-size: 30
   banner:
     location: banner-custom.txt
   profiles:
