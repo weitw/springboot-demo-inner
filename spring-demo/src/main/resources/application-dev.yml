@@ -1,1 +1,4 @@
 appfile: application-dev.yml
+
+# 该配置只有dev配置里有。测试一下只有启动该环境才会加载特定的controller
+test-controller: true
