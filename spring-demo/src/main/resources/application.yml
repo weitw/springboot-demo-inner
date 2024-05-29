@@ -81,19 +81,10 @@ logging:
   include-application-name: true
 
 # 自定义或多数据源
-app:
-  datasource:
-    first:
-      url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
-      username: root
-      password: 123456
-      configuration:
-        maximum-pool-size: 30
-
-    second:
-      url: jdbc:mysql://localhost:3306/inner-test?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
-      username: root
-      password: 123456
-      max-total: 30
+custom-jdbc-datasource:
+  driver-class-name: com.mysql.jdbc.Driver
+  url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+  username: root
+  password: 123456
 
 
