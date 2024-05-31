@@ -8,11 +8,11 @@ import java.util.Date;
 public class UmsMenu {
     private Integer id;
     private Integer parent_id;
+    private Date create_time;
+    private String title;
     private Integer level;
     private Integer sort;
-    private Integer hidden;
-    private String title;
     private String name;
     private String icon;
-    private Date createTime;
+    private Integer hidden;
 }

@@ -1,6 +1,9 @@
-package com.weitw.study.sbt.dao;
+package com.weitw.study.sbt.mapper.primary;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * <p>
@@ -11,7 +14,7 @@ import org.apache.ibatis.annotations.Mapper;
  * @since 2024-05-15
  */
 @Mapper
-public interface TMenuDao {
+public interface TMenuMapper {
 
     String findById(Integer id);
 

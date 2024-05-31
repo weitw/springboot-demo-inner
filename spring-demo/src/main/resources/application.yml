@@ -4,22 +4,25 @@ spring:
       max-file-size: 10MB # 文件大小限制
       max-request-size: 100MB # 请求大小限制
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/inner-test?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
-    username: root
-#    password: ENCRYPT(UBHpSHxjL2F8ZiNTJUciZw==)
-    password: 123456
-  # 自定义数据源
-#  datasourceCustom:
 #    driver-class-name: com.mysql.jdbc.Driver
-#    url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+#    url: jdbc:mysql://localhost:3306/inner-test?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
 #    username: root
-#    password: 123456
-#    pool-size: 30
+#    password: ENCRYPT(UBHpSHxjL2F8ZiNTJUciZw==)
+  # 自定义数据源
+    primary:
+      driver-class-name: com.mysql.jdbc.Driver
+      jdbc-url: jdbc:mysql://localhost:3306/inner-test?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+      username: root
+      password: ENCRYPT(UBHpSHxjL2F8ZiNTJUciZw==)
+    secondary:
+      driver-class-name: com.mysql.jdbc.Driver
+      jdbc-url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+      username: root
+      password: 123456
   banner:
     location: banner-custom.txt
-  profiles:
-    active: test
+#  profiles:
+#    active: dev
   application:
     name: springDemo
 
@@ -76,3 +79,12 @@ my-random:
 # 日志
 logging:
   include-application-name: true
+
+# 自定义或多数据源
+custom-jdbc-datasource:
+  driver-class-name: com.mysql.jdbc.Driver
+  url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+  username: root
+  password: 123456
+
+
