@@ -18,11 +18,11 @@
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>com.weitw.study.sbt</groupId>
-            <artifactId>utils-demo</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.weitw.study.sbt</groupId>-->
+<!--            <artifactId>utils-demo</artifactId>-->
+<!--            <version>1.0-SNAPSHOT</version>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jooq</artifactId>
@@ -61,14 +61,14 @@
                 <configuration>
                     <jdbc>
                         <driver>com.mysql.jdbc.Driver</driver>
-                        <url>jdbc:mysql://127.0.0.1:3306</url>
-                        <user>root</user>
-                        <password>123456</password>
+                        <url>jdbc:mysql://jumpserver.dev.xinshiyun.com:33061</url>
+                        <user>8a3784bd-d684-4759-ae57-7b90445a966a</user>
+                        <password>EPzNK8cJK0VJcbtO</password>
                     </jdbc>
                     <generator>
                         <database>
                             <name> org.jooq.meta.mysql.MySQLDatabase</name>
-                            <inputSchema>erjibsdzsdspt_zizhu</inputSchema>
+                            <inputSchema>deliverunion_standard_test</inputSchema>
                             <unsignedTypes>false</unsignedTypes>
                             <customTypes>
                                 <customType>

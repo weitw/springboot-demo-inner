@@ -21,6 +21,7 @@
         <module>swagger-demo</module>
         <module>mybatis-plus-demo</module>
         <module>spring-demo</module>
+        <module>xxjob-demo</module>
     </modules>
 
     <properties>

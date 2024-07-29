@@ -1,8 +1,7 @@
-package com.weitw.study.sbt.dao;
+package com.weitw.study.sbt.mapper;
 
 import com.weitw.study.sbt.domain.UmsMenu;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
 
 @Mapper
 public interface UmsMenuDao {

@@ -177,9 +177,49 @@ public class LoggingInterceptor implements HandlerInterceptor {
 
 [Springboot-配置文件中敏感信息的加密：三种加密保护方法比较-CSDN博客](https://blog.csdn.net/wtwcsdn123/article/details/138801475)
 
+## 5. 循环依赖问题
+
+如果BeanA依赖BeanB，BeanB依赖BeanA。
+
+采用构造器注入会报错，提示循环依赖问题。
+
+如果采用属性注入，不会报循环依赖问题。
+
+采用setter注入，不会报循环依赖（A采用构造器注入，B采用setter注入）
+
+### Spring处理循环依赖的方法
+
+在Spring中解决循环依赖问题主要采用了以下几种策略，其中包括利用三级缓存机制。下面将分点详细解释这些策略：
+
+1. **构造器参数循环依赖的解决**：
+   - Spring容器会检测正在创建的Bean是否处于“当前创建Bean池”中，如果是，则表明存在循环依赖，并会抛出`BeanCurrentlyInCreationException`异常。
+   - 对于已经创建完毕的Bean，将会从“当前创建Bean池”中清除。
+2. **三级缓存机制**：
+   - Spring为了解决循环依赖问题，确实采用了三级缓存策略。
+   - **一级缓存**：存放已经完全初始化好的Bean实例（`singletonObjects`）。
+   - **二级缓存**：存放原始的Bean对象，用于解决循环依赖（`earlySingletonObjects`）。
+   - **三级缓存**：存放一个ObjectFactory对象，该对象用于创建一个Bean实例（`singletonFactories`）。
+   - 当发生循环依赖时，Spring会利用这三级缓存来解决。具体流程是：当一个Bean正在创建过程中，会先将其ObjectFactory放入三级缓存中，如果遇到循环依赖，就可以利用这个ObjectFactory来提前暴露一个尚未完全初始化的Bean来解决依赖关系，并最终完成Bean的创建。
+3. **setter注入和属性注入**：
+   - 与构造器注入不同，setter注入和属性注入允许在Bean实例化之后设置依赖关系。
+   - 这意味着即使存在循环依赖，Bean也可以先被实例化，然后再通过setter方法或直接设置属性值来解决依赖关系，从而避免循环依赖问题。
+
+需要注意的是，Spring解决循环依赖的前提条件是：
+
+- 相互依赖的Bean必须是单例的，因为对于原型（prototype）范围的Bean，每次请求都会创建一个新的实例，这会导致循环依赖无法解决。
+- 不能仅通过构造函数注入来解决循环依赖，因为这种情况下会产生死锁。
+
+综上所述，Spring通过结合使用“当前创建Bean池”检测、三级缓存机制以及支持setter和属性注入等多种方式来解决循环依赖问题。
+
 # proj-admin
 
 用于一些项目实战应用
+## 1.自定义实现动态定时任务
+基于TaskScheduler创建ScheduledFuture，创建ScheduledFuture的时候需要指定cron表达式，这个时候可以去数据库里查询初始化定时任务。
+当需要变更时，修改数据库里的cron表达式。然后程序可以设置每个30s去数据库查询一下，如果cron表达式发生变化，那就重新初始化定时任务。
+`futureTask = taskScheduler.schedule(this::executeTask, new CronTrigger(cronExpression));`。
+如果一个类里有多个定时任务（方法），那就需要借助Map集合来实现，即每个定时任务创建一个ScheduledFuture。
+详情请参考代码：com.weitw.study.sbt.schedules.DynamicScheduledTaskService、com.weitw.study.sbt.schedules.DynamicScheduled2TaskService、com.weitw.study.sbt.schedules.DynamicScheduled3TaskService
 
 # swagger-demo
 

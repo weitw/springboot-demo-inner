@@ -1,6 +1,6 @@
 package com.weitw.study.sbt.service;
 
-import com.weitw.study.sbt.dao.MyEntityRepository;
+import com.weitw.study.sbt.mapper.MyEntityRepository;
 import com.weitw.study.sbt.domain.MyEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;  

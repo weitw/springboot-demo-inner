@@ -4,18 +4,28 @@ spring:
       max-file-size: 50MB
       max-request-size: 50MB
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-
-    url: jdbc:mysql://127.0.0.1:3306/erjibsdzsdspt_zizhu?characterEncoding=UTF-8&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8
-    username: root
-    password: 123456
-
-    type: com.zaxxer.hikari.HikariDataSource
-    hikari:
-      minimum-idle: 10
-      maximum-pool-size: 50
-      connection-test-query: SELECT 1
-      pool-name: DatebookHikariCP
+#    driver-class-name: com.mysql.jdbc.Driver
+#
+#    url: jdbc:mysql://127.0.0.1:3306/erjibsdzsdspt_zizhu?characterEncoding=UTF-8&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8
+#    username: root
+#    password: 123456
+#
+#    type: com.zaxxer.hikari.HikariDataSource
+#    hikari:
+#      minimum-idle: 10
+#      maximum-pool-size: 50
+#      connection-test-query: SELECT 1
+#      pool-name: DatebookHikariCP
+    primary:
+      driver-class-name: com.mysql.jdbc.Driver
+      jdbc-url: jdbc:mysql://localhost:3306/erjibsdzsdspt_zizhu?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+      username: root
+      password: 1232456
+    secondary:
+      driver-class-name: com.mysql.jdbc.Driver
+      jdbc-url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+      username: root
+      password: 123456
   jooq:
     sql-dialect: MYSQL
   cache:

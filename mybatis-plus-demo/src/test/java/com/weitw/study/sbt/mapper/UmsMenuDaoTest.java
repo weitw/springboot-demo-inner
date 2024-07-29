@@ -1,7 +1,6 @@
-package com.weitw.study.sbt.dao;
+package com.weitw.study.sbt.mapper;
 
 import com.weitw.study.sbt.domain.UmsMenu;
-import junit.framework.TestCase;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
