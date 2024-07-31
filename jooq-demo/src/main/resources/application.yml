@@ -4,28 +4,44 @@ spring:
       max-file-size: 50MB
       max-request-size: 50MB
   datasource:
-#    driver-class-name: com.mysql.jdbc.Driver
-#
-#    url: jdbc:mysql://127.0.0.1:3306/erjibsdzsdspt_zizhu?characterEncoding=UTF-8&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8
-#    username: root
-#    password: 123456
-#
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/inner-test?characterEncoding=UTF-8&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8
+    username: root
+    password: 123456
+
 #    type: com.zaxxer.hikari.HikariDataSource
 #    hikari:
-#      minimum-idle: 10
-#      maximum-pool-size: 50
+#      minimum-idle: 1
+#      maximum-pool-size: 3
 #      connection-test-query: SELECT 1
 #      pool-name: DatebookHikariCP
-    primary:
-      driver-class-name: com.mysql.jdbc.Driver
-      jdbc-url: jdbc:mysql://localhost:3306/erjibsdzsdspt_zizhu?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
-      username: root
-      password: 1232456
-    secondary:
-      driver-class-name: com.mysql.jdbc.Driver
-      jdbc-url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
-      username: root
-      password: 123456
+
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      initial-size: 5
+      min-idle: 5
+      max-active: 20
+      max-wait: 60000
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      validation-query: SELECT 1 FROM DUAL
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      filters: stat,wall
+      connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+      stat-view-servlet:
+        enabled: true
+        url-pattern: /druid/*
+        login-username: admin
+        login-password: admin
+        reset-enable: false
+      web-stat-filter:
+        enabled: true
+        url-pattern: /*
+        exclusions: '*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*'
   jooq:
     sql-dialect: MYSQL
   cache:
@@ -119,3 +135,20 @@ file:
 
 #省份编码
 provinceCode: 320000
+
+push-case-info-beiming:
+  switch: false
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/erjibsdzsdspt_zizhu?characterEncoding=UTF-8&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8
+    username: root
+    password: 123456
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      minimum-idle: 1
+      maximum-pool-size: 2
+      connection-test-query: SELECT 1
+      pool-name: AddressDatebookHikariCP
+  crypto:
+    key: xsysm4test1234*#
+    iv: 9595959595959595

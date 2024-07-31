@@ -1,8 +1,6 @@
 package com.weitw.study.sbt.service;
 
 import cn.hutool.core.date.DateUtil;
-import com.weitw.study.sbt.db.tables.pojos.WebPushDzsd;
-import com.weitw.study.sbt.service.dao.PushDzsdDao;
 import com.weitw.study.sbt.service.impl.DzsdServiceImpl;
 import com.weitw.study.sbt.utils.DateUtils;
 import junit.framework.TestCase;
@@ -34,8 +32,8 @@ public class IDzsdServiceTest extends TestCase {
     @Test
     public void findDzsdList() {
         Date date = DateUtils.string2Date("2023-01-01 01:01:01");
-        List<WebPushDzsd> list = dzsdService.findDzsdList(date);
-        for (WebPushDzsd webPushDzsd : list) {
+        List<String> list = dzsdService.findDzsdList(date);
+        for (String webPushDzsd : list) {
             System.out.println(webPushDzsd);
         }
     }
