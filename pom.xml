@@ -22,6 +22,7 @@
         <module>mybatis-plus-demo</module>
         <module>spring-demo</module>
         <module>xxjob-demo</module>
+        <module>rocketmq</module>
     </modules>
 
     <properties>
